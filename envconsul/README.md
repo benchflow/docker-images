@@ -12,8 +12,8 @@ There are different versions of envconsul Docker Images, corresponding to the di
 
 ## Supported Tags/Releases
 
-- `latest`, `v0.5.0`, `latest_ubuntu`, `v0.5.0_ubuntu` ([Release](https://github.com/benchflow/docker-envconsul/releases/tag/v0.5.0))
-- `latest_serverjre-7`, `v0.5.0_serverjre-7` ([Release](https://github.com/benchflow/docker-envconsul/releases/tag/v0.5.0))
+- `latest`, `v0.5.0`, `latest_ubuntu`, `v0.5.0_ubuntu` ([Dockerfile](https://github.com/benchflow/docker-images/blob/master/envconsul/ubuntu/14.04/Dockerfile))
+- `latest_serverjre-7`, `v0.5.0_serverjre-7` ([Dockerfile](https://github.com/benchflow/docker-images/blob/master/envconsul/oracle-java/serverjre-7/Dockerfile))
 
 # How this image works? #
 
