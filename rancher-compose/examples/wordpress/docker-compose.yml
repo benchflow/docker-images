@@ -1,0 +1,20 @@
+mywordpress:
+  tty: true
+  image: wordpress
+  links:
+    database: mysql
+  stdin_open: true
+wordpresslb:
+  ports:
+  - 8090:80
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+    mywordpress: mywordpress
+  stdin_open: true
+database:
+  environment:
+    MYSQL_ROOT_PASSWORD: pass1
+  tty: true
+  image: mysql
+  stdin_open: true
