@@ -7,14 +7,16 @@ ENV FABAN_VERSION 1.3.1
 ENV FABAN_ROOT /
 ENV FABAN_HOME ${FABAN_ROOT}faban
 
-#TODO: change to download from the benchflow faban repository and build from there (while developing)
-RUN apk --update add wget && \
-	wget -q --no-check-certificate -O /tmp/faban.tar.gz http://faban.org/downloads/faban-kit-${FABAN_VERSION}.tar.gz && \
-	mkdir -p ${FABAN_ROOT}/ && \
-	tar -xzvf /tmp/faban.tar.gz -C ${FABAN_ROOT}/ && \
-	apk del --purge wget && \
-    rm -rf /var/cache/apk/* /tmp/* /var/tmp/* *.gz
 
+#TODO: change to download from the benchflow faban repository and build from there (while developing)
+#RUN apk --update add wget && \
+#	wget -q --no-check-certificate -O /tmp/faban.tar.gz http://faban.org/downloads/faban-kit-${FABAN_VERSION}.tar.gz && \
+#	mkdir -p ${FABAN_ROOT}/ && \
+#	tar -xzvf /tmp/faban.tar.gz -C ${FABAN_ROOT}/ && \
+#	apk del --purge wget && \
+#    rm -rf /var/cache/apk/* /tmp/* /var/tmp/* *.gz
+
+COPY ./faban ${FABAN_ROOT}
 COPY ./bin/startup.sh ${FABAN_HOME}/master/bin/startup.sh
 
 #Tomcat logs
