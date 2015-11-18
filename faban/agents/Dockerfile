@@ -4,6 +4,8 @@ MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
 ENV FABAN_VERSION 1.3.1
 #Faban will be installed in the ${FABAN_ROOT}/faban directory
+#this has to be the same location as the harness location on the master machine
+#so it will be probably better to pass this as an argument to the container
 ENV FABAN_ROOT /
 ENV FABAN_HOME ${FABAN_ROOT}faban
 
@@ -17,8 +19,9 @@ ENV FABAN_HOME ${FABAN_ROOT}faban
 #    rm -rf /var/cache/apk/* /tmp/* /var/tmp/* *.gz
 
 COPY ./faban ${FABAN_ROOT}
-COPY ./bin/startup.sh ${FABAN_HOME}/master/bin/startup.sh
+COPY ./tmp/faban-agent.tar.gz ${FABAN_ROOT}faban-agent.tar.gz
 
+#I don't know if these are necessary or not
 #Tomcat logs
 VOLUME ${FABAN_HOME}/master/logs
 #Tomcat conf
@@ -48,12 +51,8 @@ EXPOSE 9985
 EXPOSE 9998
 #9999 - Faban logging
 EXPOSE 9999
-
-#I need to run the makeagent script to get the tar archive that must be copied onto the agent
-#this will create an archive at location /tmp/faban-agent.tar.gz
-#this archive as to be copied in the FABAN_HOME of all agents
-# N.B: FABAN_HOME must be at same location as the harness
-CMD ["sh","-c","${FABAN_HOME}/bin/makeagent"]
     
 #We use CMD because we don't want to override the ENTRYPOINT of the base image
+#but let's start the agent instead
 CMD ["sh","-c","${FABAN_HOME}/master/bin/startup.sh"]
+#CMD ["sh","-c","${FABAN_HOME}/bin/agent"]
