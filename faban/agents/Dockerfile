@@ -2,8 +2,13 @@ FROM benchflow/envconsul:v0.5.0_serverjre-7
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
+#run this with
+#docker run -e "ENVCONSUL_CONSUL=demo.consul.io:80" -e "ENVCONSUL_ONCE=true" -p 9980:9980 -p 9981:9981 -p 9984:9984 -p 9985:9985 -p 9998:9998 -p 9999:9999 faban-agent
+
 ENV FABAN_VERSION 1.3.1
 #Faban will be installed in the ${FABAN_ROOT}/faban directory
+#this has to be the same location as the harness location on the master machine
+#so it will be probably better to pass this as an argument to the container
 ENV FABAN_ROOT /
 ENV FABAN_HOME ${FABAN_ROOT}faban
 
@@ -16,9 +21,10 @@ ENV FABAN_HOME ${FABAN_ROOT}faban
 #	apk del --purge wget && \
 #    rm -rf /var/cache/apk/* /tmp/* /var/tmp/* *.gz
 
-COPY ./faban ${FABAN_ROOT}
-COPY ./bin/startup.sh ${FABAN_HOME}/master/bin/startup.sh
+COPY ./faban ${FABAN_HOME}
+COPY ./tmp/faban-agent.tar.gz ${FABAN_HOME}/
 
+#I don't know if these are necessary or not
 #Tomcat logs
 VOLUME ${FABAN_HOME}/master/logs
 #Tomcat conf
@@ -48,12 +54,6 @@ EXPOSE 9985
 EXPOSE 9998
 #9999 - Faban logging
 EXPOSE 9999
-
-#I need to run the makeagent script to get the tar archive that must be copied onto the agent
-#this will create an archive at location /tmp/faban-agent.tar.gz
-#this archive as to be copied in the FABAN_HOME of all agents
-# N.B: FABAN_HOME must be at same location as the harness
-CMD ["sh","-c","${FABAN_HOME}/bin/makeagent"]
     
 #We use CMD because we don't want to override the ENTRYPOINT of the base image
-CMD ["sh","-c","${FABAN_HOME}/master/bin/startup.sh"]
+CMD ["sh","-c","${FABAN_HOME}/bin/agent"]
