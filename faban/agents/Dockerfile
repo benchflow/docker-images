@@ -2,6 +2,9 @@ FROM benchflow/envconsul:v0.5.0_serverjre-7
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
+#run this with
+#docker run -e "ENVCONSUL_CONSUL=demo.consul.io:80" -e "ENVCONSUL_ONCE=true" -p 9980:9980 -p 9981:9981 -p 9984:9984 -p 9985:9985 -p 9998:9998 -p 9999:9999 faban-agent
+
 ENV FABAN_VERSION 1.3.1
 #Faban will be installed in the ${FABAN_ROOT}/faban directory
 #this has to be the same location as the harness location on the master machine
@@ -18,8 +21,8 @@ ENV FABAN_HOME ${FABAN_ROOT}faban
 #	apk del --purge wget && \
 #    rm -rf /var/cache/apk/* /tmp/* /var/tmp/* *.gz
 
-COPY ./faban ${FABAN_ROOT}
-COPY ./tmp/faban-agent.tar.gz ${FABAN_ROOT}faban-agent.tar.gz
+COPY ./faban ${FABAN_HOME}
+COPY ./tmp/faban-agent.tar.gz ${FABAN_HOME}/
 
 #I don't know if these are necessary or not
 #Tomcat logs
@@ -53,6 +56,4 @@ EXPOSE 9998
 EXPOSE 9999
     
 #We use CMD because we don't want to override the ENTRYPOINT of the base image
-#but let's start the agent instead
-CMD ["sh","-c","${FABAN_HOME}/master/bin/startup.sh"]
-#CMD ["sh","-c","${FABAN_HOME}/bin/agent"]
+CMD ["sh","-c","${FABAN_HOME}/bin/agent"]
