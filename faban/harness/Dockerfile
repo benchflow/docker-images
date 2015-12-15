@@ -7,16 +7,14 @@ ENV FABAN_VERSION 1.3.1
 ENV FABAN_ROOT /
 ENV FABAN_HOME ${FABAN_ROOT}faban
 
-
 #TODO: change to download from the benchflow faban repository and build from there (while developing)
-#RUN apk --update add wget && \
-#	wget -q --no-check-certificate -O /tmp/faban.tar.gz http://faban.org/downloads/faban-kit-${FABAN_VERSION}.tar.gz && \
-#	mkdir -p ${FABAN_ROOT}/ && \
-#	tar -xzvf /tmp/faban.tar.gz -C ${FABAN_ROOT}/ && \
-#	apk del --purge wget && \
-#    rm -rf /var/cache/apk/* /tmp/* /var/tmp/* *.gz
+RUN apk --update add wget && \
+	wget -q --no-check-certificate -O /tmp/faban.tar.gz http://faban.org/downloads/faban-kit-${FABAN_VERSION}.tar.gz && \
+	mkdir -p ${FABAN_ROOT}/ && \
+	tar -xzvf /tmp/faban.tar.gz -C ${FABAN_ROOT}/ && \
+	apk del --purge wget && \
+    rm -rf /var/cache/apk/* /tmp/* /var/tmp/* *.gz
 
-COPY ./faban ${FABAN_ROOT}
 COPY ./bin/startup.sh ${FABAN_HOME}/master/bin/startup.sh
 
 #Tomcat logs
@@ -48,12 +46,6 @@ EXPOSE 9985
 EXPOSE 9998
 #9999 - Faban logging
 EXPOSE 9999
-
-#I need to run the makeagent script to get the tar archive that must be copied onto the agent
-#this will create an archive at location /tmp/faban-agent.tar.gz
-#this archive as to be copied in the FABAN_HOME of all agents
-# N.B: FABAN_HOME must be at same location as the harness
-CMD ["sh","-c","${FABAN_HOME}/bin/makeagent"]
     
 #We use CMD because we don't want to override the ENTRYPOINT of the base image
 CMD ["sh","-c","${FABAN_HOME}/master/bin/startup.sh"]
