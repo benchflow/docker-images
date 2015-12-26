@@ -1,4 +1,4 @@
-FROM benchflow/base-image-envconsul:dev
+FROM benchflow/base-images:envconsul_dev
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 

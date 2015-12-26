@@ -1,4 +1,4 @@
-FROM benchflow/base-image:dev
+FROM benchflow/base-images:dev
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
