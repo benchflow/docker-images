@@ -1,0 +1,18 @@
+sudo: required
+dist: precise
+group: edge
+
+language: bash
+
+# whitelist
+branches:
+  only:
+    - dev
+
+install: true
+
+after_success:
+  # Trigger the build of a repo with intra dependencies among images
+  - sudo wget https://github.com/benchflow/benchflow/raw/dev/ci/trigger_docker_hub_intra_repo_builds_with_dependencies.sh -O /usr/bin/trigger_docker_hub_intra_repo_builds_with_dependencies.sh
+  - sudo chmod +x /usr/bin/trigger_docker_hub_intra_repo_builds_with_dependencies.sh
+  - /usr/bin/trigger_docker_hub_intra_repo_builds_with_dependencies.sh
