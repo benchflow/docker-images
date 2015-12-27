@@ -21,8 +21,8 @@ RUN chmod +x /envconsul/start.sh
 COPY ./services/envcp/update.sh /envcp/update.sh
 RUN chmod +x /envcp/update.sh
 
-COPY ./services/100-envconsul-configure.conf /apps/chaperone.d
-COPY ./services/200-envconsul-envcp.conf /apps/chaperone.d
+COPY ./services/100-envconsul-configure.conf /apps/chaperone.d/100-envconsul-configure.conf
+COPY ./services/200-envconsul-envcp.conf /apps/chaperone.d/200-envconsul-envcp.conf
 # create the directory that is going to accomodate the app
 RUN mkdir -p /app
 # enable chaperone to work on the following directories
