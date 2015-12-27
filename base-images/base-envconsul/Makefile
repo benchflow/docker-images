@@ -1,4 +1,4 @@
-NAME = benchflow/base-image-envconsul
+NAME = benchflow/base-images:envconsul
 # will follow the envconsul version
 VERSION = dev
 
@@ -7,4 +7,4 @@ VERSION = dev
 all: build
 
 build:
-	docker build -t $(NAME):$(VERSION) -f Dockerfile .
+	docker build -t $(NAME)_$(VERSION) -f Dockerfile .

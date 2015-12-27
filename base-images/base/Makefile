@@ -1,4 +1,4 @@
-NAME = benchflow/base-image
+NAME = benchflow/base-images
 VERSION = dev
 
 .PHONY: all build
