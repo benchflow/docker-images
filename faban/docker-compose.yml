@@ -1,0 +1,4 @@
+#TODO:
+#Set the command to run:
+# docker run -p 9980:9980 -p 9981:9981 -p 9984:9984 -p 9985:9985 -p 9998:9998 -p 9999:9999 benchflow/faban-harness
+# docker run -p 9980:9980 -p 9981:9981 -p 9984:9984 -p 9985:9985 -p 9998:9998 -p 9999:9999 benchflow/faban-agent
