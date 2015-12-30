@@ -18,9 +18,10 @@ RUN apk --update add wget && \
 # Moved from startup.sh, and adapted for Docker
 # Since Faban uses root context, make sure it is unjarred before startup
 RUN mkdir -p ${FABAN_HOME}/master/webapps/faban && \
+	cd ${FABAN_HOME}/master/webapps/faban && \
 	JAVA=`readlink -f $(which java) | sed 's|/bin/java$||'` && \
 	#Unjar faban.war
-	$JAVA/bin/jar xf ${FABAN_HOME}/master/webapps/faban.war
+	$JAVA/bin/jar xf ../faban.war
 
 #Update the startup script to keep Faban in foreground
 COPY ./bin/startup.sh ${FABAN_HOME}/master/bin/startup.sh
