@@ -5,15 +5,19 @@ MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 ENV RELEASE_VERSION v-dev
 ENV FABAN_VERSION dev
 #Faban will be installed in the ${FABAN_ROOT}/faban directory
-ENV FABAN_ROOT /
+ENV FABAN_ROOT /app/
 ENV FABAN_HOME ${FABAN_ROOT}faban
 
-RUN apk --update add wget && \
+#Add faban and its dependencies (procps)
+RUN apk --update add wget procps && \
 	wget -q --no-check-certificate -O /tmp/faban.tar.gz https://github.com/benchflow/faban/releases/download/${RELEASE_VERSION}/faban-agent-${FABAN_VERSION}.tar.gz && \
 	mkdir -p ${FABAN_ROOT}/ && \
 	tar -xzvf /tmp/faban.tar.gz -C ${FABAN_ROOT}/ && \
 	apk del --purge wget && \
     rm -rf /var/cache/apk/* /tmp/* /var/tmp/* *.gz
+
+# Setup tools and paths of system's executables as expected by Faban
+RUN ln -s /usr/bin/awk /bin/awk
     
 #Update the startup script to keep the Faban Agent in foreground
 COPY ./bin/agent ${FABAN_HOME}/bin/agent

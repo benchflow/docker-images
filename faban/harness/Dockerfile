@@ -5,10 +5,11 @@ MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 ENV RELEASE_VERSION v-dev
 ENV FABAN_VERSION dev
 #Faban will be installed in the ${FABAN_ROOT}/faban directory
-ENV FABAN_ROOT /
+ENV FABAN_ROOT /app/
 ENV FABAN_HOME ${FABAN_ROOT}faban
 
-RUN apk --update add wget && \
+#Add faban and its dependencies (procps)
+RUN apk --update add wget procps && \
 	wget -q --no-check-certificate -O /tmp/faban.tar.gz https://github.com/benchflow/faban/releases/download/${RELEASE_VERSION}/faban-kit-${FABAN_VERSION}.tar.gz && \
 	mkdir -p ${FABAN_ROOT}/ && \
 	tar -xzvf /tmp/faban.tar.gz -C ${FABAN_ROOT}/ && \
@@ -22,6 +23,9 @@ RUN mkdir -p ${FABAN_HOME}/master/webapps/faban && \
 	JAVA=`readlink -f $(which java) | sed 's|/bin/java$||'` && \
 	#Unjar faban.war
 	$JAVA/bin/jar xf ../faban.war
+
+# Setup tools and paths of system's executables as expected by Faban
+RUN ln -s /usr/bin/awk /bin/awk
 
 #Update the startup script to keep Faban in foreground
 COPY ./bin/startup.sh ${FABAN_HOME}/master/bin/startup.sh
