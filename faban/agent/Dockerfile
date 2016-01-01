@@ -7,6 +7,8 @@ ENV FABAN_VERSION dev
 #Faban will be installed in the ${FABAN_ROOT}/faban directory
 ENV FABAN_ROOT /app/
 ENV FABAN_HOME ${FABAN_ROOT}faban
+#TEST: remove, overriding Chaperone for debugging purposes
+ENV JAVA_HOME /usr/lib/jvm/java7
 
 #Add faban and its dependencies (procps)
 RUN apk --update add wget procps && \
