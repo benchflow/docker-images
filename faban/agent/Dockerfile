@@ -23,6 +23,9 @@ RUN ln -s /usr/bin/awk /bin/awk
 COPY ./bin/agent ${FABAN_HOME}/bin/agent
 RUN chmod +x ${FABAN_HOME}/bin/agent
 
+#TEST: remove, enable FINE log level
+COPY ./config/logging.properties ${FABAN_HOME}/config/logging.properties
+
 COPY ./services/300-faban-agent.conf /apps/chaperone.d/300-faban-agent.conf
 
 #TODO: decide which of the following volumes and ports are necessary for the agent, and disable the ones that are not
@@ -59,3 +62,6 @@ EXPOSE 9999
 
 #TODO: remove, it is for testing
 RUN touch /app/test.tpl
+
+#TEST: remove, overriding Chaperone for debugging purposes
+ENTRYPOINT ["/app/faban/bin/agent"]

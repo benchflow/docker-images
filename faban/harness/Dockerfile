@@ -31,6 +31,11 @@ RUN ln -s /usr/bin/awk /bin/awk
 COPY ./bin/startup.sh ${FABAN_HOME}/master/bin/startup.sh
 RUN chmod +x ${FABAN_HOME}/master/bin/startup.sh
 
+#TEST: remove, enable debug mode and FINE log level
+COPY ./bin/catalina.sh ${FABAN_HOME}/master/bin/catalina.sh
+RUN chmod +x ${FABAN_HOME}/master/bin/catalina.sh
+COPY ./config/logging.properties ${FABAN_HOME}/config/logging.properties
+
 COPY ./services/300-faban-harness.conf /apps/chaperone.d/300-faban-harness.conf
 
 #Tomcat logs
@@ -65,3 +70,6 @@ EXPOSE 9999
 
 #TODO: remove, it is for testing
 RUN touch /app/test.tpl
+
+#TEST: remove, overriding Chaperone for debugging purposes
+ENTRYPOINT ["/app/faban/master/bin/startup.sh"]

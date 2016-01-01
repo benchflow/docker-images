@@ -35,4 +35,4 @@ HOST=`hostname`
 
 echo "Starting Faban Server"
 
-exec "$PRGDIR"/"$EXECUTABLE" run "$@"
+exec "$PRGDIR"/"$EXECUTABLE" debug "$@"
