@@ -12,7 +12,7 @@ RUN  apt-get update \
      && apt-get -y autoremove \
      && rm -rf /var/lib/apt/lists/*
 
-COPY bin/initialize-entrypoint.sh /app
+COPY bin/initialize-entrypoint.sh /app/initialize-entrypoint.sh
 RUN chmod +x /app/initialize-entrypoint.sh
 
 ENTRYPOINT ["/app/initialize-entrypoint.sh"]
