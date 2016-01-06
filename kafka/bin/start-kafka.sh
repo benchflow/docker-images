@@ -2,6 +2,7 @@
 
 # Save the container ID
 CONTAINER_ID=$(docker ps | grep `hostname` | awk '{print $NF}')
+KAFKA_BROKER_ID=$CONTAINER_ID
 
 if [[ -z "$KAFKA_ADVERTISED_PORT" ]]; then
     export KAFKA_ADVERTISED_PORT=$(docker port $CONTAINER_ID 9092 | sed -r "s/.*:(.*)/\1/g")
