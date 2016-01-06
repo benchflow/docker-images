@@ -1,4 +1,4 @@
-FROM benchflow/base-images:envconsul-java7_dev
+FROM benchflow/base-images:envconsul-java8_dev
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
@@ -8,7 +8,7 @@ ENV FABAN_VERSION dev
 ENV FABAN_ROOT /app/
 ENV FABAN_HOME ${FABAN_ROOT}faban
 #TEST: remove, overriding Chaperone for debugging purposes
-ENV JAVA_HOME /usr/lib/jvm/java7
+ENV JAVA_HOME /usr/lib/jvm/java8
 
 #Add faban and its dependencies (procps)
 RUN apk --update add wget procps && \
