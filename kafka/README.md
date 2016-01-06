@@ -1,1 +1,0 @@
-This is a draft customization of https://github.com/wurstmeister/kafka-docker to let it work in Tutum. It is not meant for any purpouse other than testing.
