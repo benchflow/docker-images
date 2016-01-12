@@ -1,5 +1,7 @@
 FROM cassandra:2.2.4
 
+MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
+
 # create the directory that is going to accomodate the app (data and configuration)
 RUN mkdir -p /app
 RUN mkdir -p /app/data
