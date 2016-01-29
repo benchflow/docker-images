@@ -1,8 +1,8 @@
 {                                                                               
         "version": "2",                                                         
         "credentials": {                                                        
-                "accessKeyId": "CYNQML6R7V12MTT32W6P",                          
-                "secretAccessKey": "SQ96V5pg02Z3kZ/0ViF9YY6GwWzZvoBmElpzEEjn"   
+                "accessKeyId": "$MINIO_ACCESSKEYID",                          
+                "secretAccessKey": "$MINIO_SECRETACCESSKEY"   
         },                                                                      
         "mongoLogger": {                                                        
                 "addr": "",                                                     
