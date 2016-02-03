@@ -4,8 +4,9 @@ MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
 
 COPY bin/initialize-entrypoint.sh /initialize-entrypoint.sh
-
 RUN chmod +x /initialize-entrypoint.sh
 
-ENTRYPOINT  ["/initialize-entrypoint.sh"]
-CMD         ["supervisord", "-n"]
+# Supervisor config
+ADD supervisor/kafka-init.conf /etc/supervisor/conf.d/
+
+#CMD         ["supervisord", "-n"]
