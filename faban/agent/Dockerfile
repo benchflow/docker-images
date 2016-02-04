@@ -61,9 +61,3 @@ EXPOSE 9985
 EXPOSE 9998
 #9999 - Faban logging
 EXPOSE 9999
-
-#TODO: remove, it is for testing
-RUN touch /app/test.tpl
-
-#TEST: remove, overriding Chaperone for debugging purposes
-ENTRYPOINT ["/app/faban/bin/agent"]
