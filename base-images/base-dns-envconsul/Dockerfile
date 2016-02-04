@@ -1,4 +1,4 @@
-FROM benchflow/base-images:dev
+FROM benchflow/base-images:dns_dev
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
@@ -23,5 +23,11 @@ RUN chmod +x /envcp/update.sh
 
 COPY ./services/100-envconsul-configure.conf /apps/chaperone.d/100-envconsul-configure.conf
 COPY ./services/200-envconsul-envcp.conf /apps/chaperone.d/200-envconsul-envcp.conf
+
+# copy the default configuration file in the folder where envcp expects it
+# The name is config.tlp because it is not possible to use something like default.tlp
+# because envcp uses rstrip() [https://github.com/garywiz/chaperone/blob/129514b525b4b8acf50ff01c5be827e4b31d7b01/chaperone/exec/envcp.py#L86] and "default.tpl".rstrip(".tpl") ==> 'defau'
+COPY ./config/config.tpl /app/config.tpl
+
 # enable chaperone to work on the following directories
 RUN chown -R runapps: /envconsul
