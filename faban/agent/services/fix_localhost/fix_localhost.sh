@@ -5,6 +5,8 @@ set -e
 
 #If on TUTUM, get the IP of the container on the TUTUM network
 if [[ $TUTUM_IP_ADDRESS ]]; then
+	#strips the trailing /N+
+	TUTUM_IP_ADDRESS=`echo $TUTUM_IP_ADDRESS | sed -r 's/\/([0-9]+)//'`
 	ip=$TUTUM_IP_ADDRESS
 #If using network --net="host" we pass the actual IP of the host
 elif [[ $HOST_IP ]]; then
