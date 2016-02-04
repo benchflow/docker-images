@@ -1,4 +1,4 @@
-FROM benchflow/base-images:envconsul-java7_dev
+FROM benchflow/base-images:dns-java7_dev
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
@@ -39,6 +39,9 @@ RUN chmod +x ${FABAN_HOME}/master/bin/catalina.sh
 COPY ./config/logging.properties ${FABAN_HOME}/config/logging.properties
 
 COPY ./services/300-faban-harness.conf /apps/chaperone.d/300-faban-harness.conf
+
+# forward catalina.out logs to docker log collector
+RUN ln -sf /dev/stdout ${FABAN_HOME}/master/logs/catalina.out
 
 #Tomcat logs
 VOLUME ${FABAN_HOME}/master/logs

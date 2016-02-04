@@ -1,4 +1,4 @@
-FROM benchflow/base-images:envconsul-java7_dev
+FROM benchflow/base-images:dns-java7_dev
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
