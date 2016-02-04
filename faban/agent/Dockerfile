@@ -28,6 +28,10 @@ RUN chmod +x ${FABAN_HOME}/bin/agent
 #TEST: remove, enable FINE log level
 COPY ./config/logging.properties ${FABAN_HOME}/config/logging.properties
 
+COPY ./services/fix_localhost/fix_localhost.sh /fix_localhost.sh
+RUN chmod +x /fix_localhost.sh
+
+COPY ./services/005-fix-localhost.conf /apps/chaperone.d/005-fix-localhost.conf
 COPY ./services/300-faban-agent.conf /apps/chaperone.d/300-faban-agent.conf
 
 #TODO: decide which of the following volumes and ports are necessary for the agent, and disable the ones that are not

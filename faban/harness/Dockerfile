@@ -38,6 +38,10 @@ COPY ./bin/catalina.sh ${FABAN_HOME}/master/bin/catalina.sh
 RUN chmod +x ${FABAN_HOME}/master/bin/catalina.sh
 COPY ./config/logging.properties ${FABAN_HOME}/config/logging.properties
 
+COPY ./services/fix_localhost/fix_localhost.sh /fix_localhost.sh
+RUN chmod +x /fix_localhost.sh
+
+COPY ./services/005-fix-localhost.conf /apps/chaperone.d/005-fix-localhost.conf
 COPY ./services/300-faban-harness.conf /apps/chaperone.d/300-faban-harness.conf
 
 # forward catalina.out logs to docker log collector
