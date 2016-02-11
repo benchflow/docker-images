@@ -1,12 +1,9 @@
 prefix {path = "/"}
 max_stale = "10m"
 token = ""
-kill_signal = "SIGHUP"
+kill_signal = "SIGTERM"
 retry = "10s"
 sanitize = true
 upcase = true
 log_level = "warn"
 pristine = false
-# 300s = 5 min
-#splay = "300s"
-#wait = "10s:40s"

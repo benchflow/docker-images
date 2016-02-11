@@ -61,7 +61,7 @@ if [ "$val" ]; then
 		#Append the other prefixes to the configuration file
 		else
 			prefix="$(echo $prefix | sed "s@\\\\@@g")"
-		    echo "prefix " $prefix >> $ENVCONSUL_CONFIG/envconsul-config.hcl
+		    echo -e "\nprefix =" $prefix >> $ENVCONSUL_CONFIG/envconsul-config.hcl
 		fi
 
 		numIteration=$((numIteration+1))
