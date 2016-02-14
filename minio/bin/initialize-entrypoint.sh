@@ -17,18 +17,18 @@ sleep 5
 
 echo "Configuring the Minio client..."
 
-mc config host add http://127.0.0.1:9000 $MINIO_ACCESSKEYID $MINIO_SECRETACCESSKEY
+mc config host add $MINIO_ALIAS http://127.0.0.1:9000 $MINIO_ACCESSKEYID $MINIO_SECRETACCESSKEY
 
 echo "Initialising the buckets..."
 
 #TODO: make a script taking care of a file to take care of the bucket definition centralized in a file that should be placed in https://github.com/benchflow/benchflow
-mc mb http://127.0.0.1:9000/runs
-mc mb http://127.0.0.1:9000/benchmarks
+mc mb $MINIO_ALIAS/runs
+mc mb $MINIO_ALIAS/benchmarks
 
 echo "Configuring access policies..."
 
-mc access set public http://127.0.0.1:9000/runs
-mc access set public http://127.0.0.1:9000/benchmarks
+mc access set public $MINIO_ALIAS/runs
+mc access set public $MINIO_ALIAS/benchmarks
 
 echo "Killing Minio..."
 pkill -f minio
