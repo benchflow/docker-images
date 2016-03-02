@@ -16,7 +16,7 @@ echo "Initialising the topics..."
 
 #TODO: make a script taking care of a file to take care of the topics definition centralized in a file that should be placed in https://github.com/benchflow/benchflow, and with better partition and replication-factor conf
 #	   moreover we should try to have these initializations at build time, if feasible
-$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --topic mysqldump --partitions 1 --replication-factor 1
+$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --topic mysql --partitions 1 --replication-factor 1
 sleep 1
 $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --topic zip --partitions 1 --replication-factor 1
 sleep 1
