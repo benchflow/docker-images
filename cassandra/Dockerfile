@@ -17,6 +17,9 @@ RUN  apt-get update \
 COPY bin/initialize-entrypoint.sh /app/initialize-entrypoint.sh
 RUN chmod +x /app/initialize-entrypoint.sh
 
+# copy custom configurations
+COPY conf/cassandra.yaml /etc/cassandra/cassandra.yaml
+
 ENTRYPOINT ["/app/initialize-entrypoint.sh"]
 
 # it seems that if we override the entrypoint then wen also need to define again the default command
