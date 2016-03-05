@@ -1,4 +1,4 @@
-FROM cassandra:2.2.4
+FROM cassandra:2.2.5
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
