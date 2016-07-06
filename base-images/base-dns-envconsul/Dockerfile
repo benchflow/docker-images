@@ -2,11 +2,10 @@ FROM benchflow/base-images:dns_dev
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
-ENV ENVCONSUL_VERSION v0.6.0
-ENV ENVCONSUL_VERSION_NUMBER 0.6.0
+ENV ENVCONSUL_VERSION_NUMBER 0.6.1
 
 RUN apk --update add wget bash unzip && \
-    wget -q --no-check-certificate -O /tmp/consul.zip https://github.com/hashicorp/envconsul/releases/download/${ENVCONSUL_VERSION}/envconsul_${ENVCONSUL_VERSION_NUMBER}_linux_amd64.zip && \
+    wget -q --no-check-certificate -O /tmp/consul.zip https://releases.hashicorp.com/envconsul/${ENVCONSUL_VERSION_NUMBER}/envconsul_${ENVCONSUL_VERSION_NUMBER}_linux_amd64.zip && \
     unzip -d /usr/bin/ /tmp/consul.zip && \
     apk del --purge wget unzip && \
     rm -rf /var/cache/apk/* /tmp/* /usr/bin/envconsul_${ENVCONSUL_VERSION_NUMBER}_linux_amd64/ /var/tmp/* *.zip 
