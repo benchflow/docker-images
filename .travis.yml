@@ -11,6 +11,9 @@ branches:
 
 install: true
 
+# test that all the images correclty build
+script: make build
+
 after_success:
   # Trigger the build of a repo with intra dependencies among images
   - sudo wget https://github.com/benchflow/benchflow/raw/dev/ci/trigger_docker_hub_intra_repo_builds_with_dependencies.sh -O /usr/bin/trigger_docker_hub_intra_repo_builds_with_dependencies.sh
