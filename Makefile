@@ -5,6 +5,7 @@ VERSION = dev
 
 all: build
 
+# build images in dependency order, so that we test the build using the latest locally built image version
 build:
 	$(MAKE) -C ./base-images/base
 	$(MAKE) -C ./base-images/base-dns
