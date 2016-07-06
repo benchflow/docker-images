@@ -21,7 +21,7 @@ mkdir $TMP
 apk add --update wget ca-certificates
 
 cd $TMP
-wget --progress=dot:mega \
+wget --no-check-certificate --progress=dot:mega \
  "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk" \
  "https://github.com/andyshinn/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}.apk"
 
