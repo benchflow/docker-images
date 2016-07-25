@@ -5,9 +5,9 @@ VERSION = dev
 
 all: build
 
-download_schema:
-	mkdir -p ./data
-	wget -O ./data/database.cql https://github.com/benchflow/benchflow/raw/dev/database_schemas/cassandra/benchflow.cql
+# download_schema:
+# 	mkdir -p ./data
+# 	wget -O ./data/database.cql https://github.com/benchflow/benchflow/raw/dev/database_schemas/cassandra/benchflow.cql
 
 build:
 	docker build -t $(NAME):$(VERSION) -f Dockerfile .
