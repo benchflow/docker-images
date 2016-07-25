@@ -1,19 +1,11 @@
-{                                                                               
-        "version": "2",                                                         
-        "credentials": {                                                        
-                "accessKeyId": "$MINIO_ACCESSKEYID",                          
-                "secretAccessKey": "$MINIO_SECRETACCESSKEY"   
-        },                                                                      
-        "mongoLogger": {                                                        
-                "addr": "",                                                     
-                "db": "",                                                       
-                "collection": ""                                                
-        },                                                                      
-        "syslogLogger": {                                                       
-                "network": "",                                                  
-                "addr": ""                                                      
-        },                                                                      
-        "fileLogger": {                                                         
-                "filename": ""                                                  
-        }                                                                       
+{
+        "version": "8",
+        "hosts": {
+                "benchflow": {
+                        "url": "http://127.0.0.1:9000",
+                        "accessKey": "$MINIO_ACCESSKEYID",
+                        "secretKey": "$MINIO_SECRETACCESSKEY" ,
+                        "api": "S3v4"
+                }
+        }
 }

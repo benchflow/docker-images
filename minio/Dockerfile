@@ -5,12 +5,13 @@ FROM sdurrheimer/alpine-glibc
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
-ENV MINIO_VERSION RELEASE.2016-07-13T21-46-05Z
+ENV MINIO_SERVER_VERSION RELEASE.2016-07-13T21-46-05Z
+ENV MINIO_CLIENT_VERSION RELEASE.2016-07-13T22-00-39Z
 ENV GOSU_VERSION 1.9
 ENV MINIO_CONF_FOLDER /home/minio/.minio
 
 # TODO, if not https://github.com/benchflow/docker-images/issues/13, then optimize the image
-ADD https://dl.minio.io/server/minio/release/linux-amd64/minio.${MINIO_VERSION} /usr/bin/minio
+ADD https://dl.minio.io/server/minio/release/linux-amd64/minio.${MINIO_SERVER_VERSION} /usr/bin/minio
 ADD https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 /usr/bin/gosu
 COPY bin/entrypoint.sh .
 

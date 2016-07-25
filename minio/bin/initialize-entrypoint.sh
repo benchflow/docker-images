@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
-
+ 
 echo "Getting the Minio client..."
 
-wget --no-check-certificate -O /bin/mc https://dl.minio.io/client/mc/release/linux-amd64/mc
+wget --no-check-certificate -O /bin/mc https://dl.minio.io/client/mc/release/linux-amd64/mc.${MINIO_CLIENT_VERSION}
 chmod 755 /bin/mc
 
 echo "Starting Minio to initialize it..."
@@ -15,10 +15,6 @@ echo "Waiting for Minio to be ready..."
 
 sleep 5
 
-echo "Configuring the Minio client..."
-
-mc config host add $MINIO_ALIAS http://127.0.0.1:9000 $MINIO_ACCESSKEYID $MINIO_SECRETACCESSKEY
-
 echo "Initialising the buckets..."
 
 #TODO: make a script taking care of a file to take care of the bucket definition centralized in a file that should be placed in https://github.com/benchflow/benchflow
@@ -27,8 +23,8 @@ mc mb $MINIO_ALIAS/benchmarks
 
 echo "Configuring access policies..."
 
-mc access set public $MINIO_ALIAS/runs
-mc access set public $MINIO_ALIAS/benchmarks
+mc policy both $MINIO_ALIAS/runs
+mc policy both $MINIO_ALIAS/benchmarks
 
 echo "Killing Minio..."
 pkill -f minio
