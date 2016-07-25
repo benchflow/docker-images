@@ -1,4 +1,4 @@
-FROM minio/minio:RELEASE.2016-07-13T21-46-05Z
+FROM zenithar/minio-server:latest
 
 MAINTAINER Vincenzo FERME <info@vincenzoferme.it>
 
