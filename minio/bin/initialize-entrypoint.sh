@@ -23,14 +23,14 @@ mc config host add $MINIO_ALIAS http://127.0.0.1:9000 $MINIO_ACCESS_KEY $MINIO_S
 
 echo "Initialising the buckets..."
 
-#TODO: make a script taking care of a file to take care of the bucket definition centralized in a file that should be placed in https://github.com/benchflow/benchflow
+#TODO: make a script taking care of a file to take care of the bucket definition centralized in a file that should be placed in https://github.com/benchflow/devops
 mc mb $MINIO_ALIAS/runs
-mc mb $MINIO_ALIAS/benchmarks
+mc mb $MINIO_ALIAS/tests
 
 echo "Configuring access policies..."
 
 mc policy both $MINIO_ALIAS/runs
-mc policy both $MINIO_ALIAS/benchmarks
+mc policy both $MINIO_ALIAS/tests
 
 echo "Killing Minio..."
 pkill -f minio
