@@ -8,12 +8,18 @@ chmod 755 /bin/mc
 
 echo "Starting Minio to initialize it..."
 
-chown -R minio:minio /data
-/usr/bin/gosu minio /usr/bin/minio server /data &
+# chown -R minio:minio /data
+# /usr/bin/gosu minio /usr/bin/minio server /data &
+chown -R minio:minio /benchflow
+minio server /benchflow &
 
 echo "Waiting for Minio to be ready..."
 
 sleep 5
+
+echo "Configuring the Minio client..."		
+
+mc config host add $MINIO_ALIAS http://127.0.0.1:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
 
 echo "Initialising the buckets..."
 
@@ -35,4 +41,4 @@ echo "Minio initialised..."
 #TODO: remove the minio client and configurations
 
 # execute the base image entrypoint in the context of the current shell
-source /entrypoint.sh
+source /entrypoint.sh $@
