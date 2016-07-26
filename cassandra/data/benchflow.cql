@@ -560,9 +560,9 @@ CREATE TABLE exp_cpu (
   cpu_average list<text>,
   cpu_worst list<text>,
   experiment_id text,
-  container_id text,
+  container_name text,
   host_id text,
-  PRIMARY KEY (experiment_id, container_id, host_id)
+  PRIMARY KEY (experiment_id, container_name, host_id)
 );
 
 CREATE TABLE exp_cpu_core (
@@ -580,9 +580,9 @@ CREATE TABLE exp_cpu_core (
   cpu_min list<double>,
   cpu_max list<double>,
   experiment_id text,
-  container_id text,
+  container_name text,
   host_id text,
-  PRIMARY KEY (experiment_id, container_id, host_id)
+  PRIMARY KEY (experiment_id, container_name, host_id)
 );
 
 CREATE TABLE exp_ram (
@@ -625,9 +625,9 @@ CREATE TABLE exp_ram (
   ram_average list<text>,
   ram_worst list<text>,
   experiment_id text,
-  container_id text,
+  container_name text,
   host_id text,
-  PRIMARY KEY (experiment_id, container_id, host_id)
+  PRIMARY KEY (experiment_id, container_name, host_id)
 );
 
 CREATE TABLE exp_throughput (
@@ -798,10 +798,10 @@ CREATE TABLE exp_io (
   total_sd double,
   total_variance double,
   experiment_id text,
-  container_id text,
+  container_name text,
   host_id text,
   device text,
-  PRIMARY KEY (experiment_id, container_id, host_id, device)
+  PRIMARY KEY (experiment_id, container_name, host_id, device)
 );
 
 -- Trial metrics
@@ -909,8 +909,9 @@ CREATE TABLE trial_cpu (
   experiment_id text,
   trial_id text,
   container_id text,
+  container_name text,
   host_id text,
-  PRIMARY KEY (experiment_id, container_id, host_id, trial_id)
+  PRIMARY KEY (experiment_id, container_id, container_name, host_id, trial_id)
 );
 
 CREATE TABLE trial_cpu_core (
@@ -935,8 +936,9 @@ CREATE TABLE trial_cpu_core (
   experiment_id text,
   trial_id text,
   container_id text,
+  container_name text,
   host_id text,
-  PRIMARY KEY (experiment_id, container_id, host_id, trial_id)
+  PRIMARY KEY (experiment_id, container_id, container_name, host_id, trial_id)
 );
 
 CREATE TABLE trial_ram (
@@ -964,8 +966,9 @@ CREATE TABLE trial_ram (
   experiment_id text,
   trial_id text,
   container_id text,
+  container_name text,
   host_id text,
-  PRIMARY KEY (experiment_id, container_id, host_id, trial_id)
+  PRIMARY KEY (experiment_id, container_id, container_name, host_id, trial_id)
 );
 
 CREATE TABLE trial_throughput (
@@ -1015,7 +1018,8 @@ CREATE TABLE trial_io (
   experiment_id text,
   trial_id text,
   container_id text,
+  container_name text,
   host_id text,
   device text,
-  PRIMARY KEY (experiment_id, container_id, host_id, trial_id, device)
+  PRIMARY KEY (experiment_id, container_id, container_name, host_id, trial_id, device)
 );
