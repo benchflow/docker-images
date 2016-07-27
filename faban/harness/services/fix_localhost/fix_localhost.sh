@@ -4,10 +4,18 @@ set -e
 #Get the actual container IP on the network
 
 #If on TUTUM, get the IP of the container on the TUTUM network
-if [[ $TUTUM_IP_ADDRESS ]]; then
+if [[ $TUTUM_IP_ADDRESS ]]; then 
 	#strips the trailing /N+
 	TUTUM_IP_ADDRESS=`echo $TUTUM_IP_ADDRESS | sed -r 's/\/([0-9]+)//'`
 	ip=$TUTUM_IP_ADDRESS
+#If on RANCHER, get the IP of the container on the RANCHER network. 
+#This is a custom ENV variable, it seems there are no variables set by Rancher to identify if
+#a container is running in the Rancher infrastructure
+elif [[ $IS_RANCHER ]]; then
+	#Reference: https://forums.rancher.com/t/get-container-rancher-ip-inside-a-container/357
+	#TODO: improve using metadata service (http://docs.rancher.com/rancher/latest/en/rancher-services/metadata-service/)
+	ip=`ip addr | grep inet | grep 10.42 | tail -1 | awk '{print $2}' | awk -F\/ '{print $1}'`
+#Else we get the IP of the current container
 #If using network --net="host" we pass the actual IP of the host
 elif [[ $HOST_IP ]]; then
 	ip=$HOST_IP
