@@ -15,7 +15,7 @@ ENV MINIO_CLIENT_CONF_FOLDER /root/.mc/
 ENV ALLOW_CONTAINER_ROOT=1
 
 # TODO, if not https://github.com/benchflow/docker-images/issues/13, then optimize the image
-ADD https://dl.minio.io/server/minio/release/linux-amd64/minio.${MINIO_SERVER_VERSION} /usr/bin/minio
+ADD https://dl.minio.io/server/minio/release/linux-amd64/archive/minio.${MINIO_SERVER_VERSION} /usr/bin/minio
 # ADD https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64 /usr/bin/gosu
 COPY bin/entrypoint.sh .
 
