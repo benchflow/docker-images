@@ -3,7 +3,7 @@ set -e
  
 echo "Getting the Minio client..."
 
-wget --no-check-certificate -O /bin/mc https://dl.minio.io/client/mc/release/linux-amd64/mc.${MINIO_CLIENT_VERSION}
+wget --no-check-certificate -O /bin/mc https://dl.minio.io/client/mc/release/linux-amd64/archive/mc.${MINIO_CLIENT_VERSION}
 chmod 755 /bin/mc
 
 echo "Starting Minio to initialize it..."
