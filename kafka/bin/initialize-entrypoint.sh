@@ -23,6 +23,10 @@ sleep 1
 $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --topic stats --partitions 1 --replication-factor 1
 sleep 1
 $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --topic logs --partitions 1 --replication-factor 1
+sleep 1
+$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --topic properties --partitions 1 --replication-factor 1
+sleep 1
+$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper 127.0.0.1:2181 --topic faban --partitions 1 --replication-factor 1
 
 #PGID_KA=$(ps -o pgid= $pid_ka | grep -o [0-9]*)
 #PGID_ZK=$(ps -o pgid= $pid_zk | grep -o [0-9]*)
