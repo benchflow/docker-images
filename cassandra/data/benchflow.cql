@@ -917,7 +917,6 @@ CREATE TABLE trial_cpu (
 CREATE TABLE trial_cpu_core (
   cpu_num_data_points bigint,
   cpu_cores int,
-  cpu_avg list<double>,
   cpu_q1 list<double>,
   cpu_q2 list<double>,
   cpu_q3 list<double>,
