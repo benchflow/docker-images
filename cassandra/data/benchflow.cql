@@ -45,6 +45,7 @@ CREATE TABLE io_data (
 CREATE TABLE environment_data (
   environment_data_id uuid,
   container_id text,
+  container_name text,
   host_id text,
   read_time text,
   cpu_percpu_usage list<bigint>,
@@ -57,7 +58,7 @@ CREATE TABLE environment_data (
   network_interfaces map<text, uuid>,
   experiment_id text,
   trial_id text,
-  PRIMARY KEY ((experiment_id, trial_id), container_id, host_id, environment_data_id)
+  PRIMARY KEY ((experiment_id, trial_id), host_id, container_id, environment_data_id)
 );
 
 CREATE TABLE network_interface_data (
@@ -81,6 +82,7 @@ CREATE TABLE network_interface_data (
 CREATE TABLE process (
   source_process_instance_id text,
   process_definition_id text,
+  process_name text,
   start_time timestamp,
   duration bigint,
   end_time timestamp,
